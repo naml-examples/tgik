@@ -1,34 +1,34 @@
+#
 # Copyright © 2021 Kris Nóva <kris@nivenly.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http:#www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
-#     ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗
-#     ████╗  ██║██╔═████╗██║   ██║██╔══██╗
-#     ██╔██╗ ██║██║██╔██║██║   ██║███████║
-#     ██║╚██╗██║████╔╝██║╚██╗ ██╔╝██╔══██║
-#     ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║
-#     ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝
+#
+#   ███╗   ██╗ █████╗ ███╗   ███╗██╗
+#   ████╗  ██║██╔══██╗████╗ ████║██║
+#   ██╔██╗ ██║███████║██╔████╔██║██║
+#   ██║╚██╗██║██╔══██║██║╚██╔╝██║██║
+#   ██║ ╚████║██║  ██║██║ ╚═╝ ██║███████╗
+#   ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
+#
 
 all: compile
 version=$(shell git rev-parse HEAD)
 
+app="tgik"
+
 compile: ## Compile for the local architecture ⚙
 	@echo "Compiling..."
-	go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o app cmd/*.go
-
-install: ## Install your naml 🎉
-	@echo "Installing..."
-	cp naml /usr/local/bin/naml
+	go build -o ${app} cmd/main.go
 
 test: ## 🤓 Test is used to test your naml
 	@echo "Testing..."
@@ -36,18 +36,12 @@ test: ## 🤓 Test is used to test your naml
 
 clean: ## Clean your artifacts 🧼
 	@echo "Cleaning..."
-	rm -rf release
-	rm -rf naml
-	rm -rf app
+	rm -rf ${app}
 
-release: ## Make the binaries for a GitHub release 📦
-	mkdir -p release
-	GOOS="linux" GOARCH="amd64" go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o release/naml-linux-amd64 cmd/*.go
-	GOOS="linux" GOARCH="arm" go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o release/naml-linux-arm cmd/*.go
-	GOOS="linux" GOARCH="arm64" go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o release/naml-linux-arm64 cmd/*.go
-	GOOS="linux" GOARCH="386" go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o release/naml-linux-386 cmd/*.go
-	GOOS="darwin" GOARCH="amd64" go build -ldflags "-X 'github.com/kris-nova/naml/example/simple.Version=$(version)'" -o release/naml-darwin-amd64 cmd/*.go
-
+install: ## Install your app 📦
+	@echo "Installing..."
+	chmox +x ${app}
+	cp ${app} /usr/local/bin/${app}
 
 .PHONY: help
 help:  ## 🤔 Show help messages for make targets

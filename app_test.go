@@ -20,11 +20,13 @@
 //    ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║
 //    ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝
 
-package app
+package tgik
 
 import (
 	"os"
 	"testing"
+
+	"github.com/kris-nova/naml"
 
 	"github.com/kris-nova/logger"
 )
@@ -37,18 +39,18 @@ func TestMain(m *testing.M) {
 		os.Exit(1)
 	}
 	q := m.Run()
-	naml2.TestClusterStop()
+	naml.TestClusterStop()
 	os.Exit(q)
 }
 
 // TestApp is an example integration test that can be used to
 // install and uninstall a sample application in Kubernetes.
 func TestApp(t *testing.T) {
-	client, err := naml.ClientFromPath(naml2.TestClusterKubeConfigPath())
+	client, err := naml.ClientFromPath(naml.TestClusterKubeConfigPath())
 	if err != nil {
 		t.Errorf("unable to create client: %v", err)
 	}
-	app := New("default", "sample-app", "beeps-boops", 2)
+	app := NewApp("default", "sample-app")
 	err = app.Install(client)
 	if err != nil {
 		t.Errorf("unable to install sample-app: %v", err)
@@ -56,13 +58,5 @@ func TestApp(t *testing.T) {
 	err = app.Uninstall(client)
 	if err != nil {
 		t.Errorf("unable to uninstall sample-app: %v", err)
-	}
-}
-
-// TestAppName shows how you can test arbitrary parts of your application.
-func TestAppName(t *testing.T) {
-	app := New("default", "sample-app", "beeps-boops", 2)
-	if app.Name != "sample-app" {
-		t.Errorf(".Name is not plumbed through from New()")
 	}
 }
