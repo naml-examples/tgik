@@ -1,4 +1,3 @@
-# Simple Application
+# Kubernetes Dashboard with NAML
 
-A basic example of how to build a [naml](https://github.com/kris-nova/naml) project.
-
+Here is one (of the many, many, many) ways you could turn the default kubernetes dashboard into a valid naml binary.
