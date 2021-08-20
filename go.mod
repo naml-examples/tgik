@@ -1,4 +1,4 @@
-module github.com/naml-examples/simple
+module github.com/naml-examples/tgik
 
 go 1.16
 

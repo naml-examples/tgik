@@ -26,10 +26,9 @@ package codify
 import (
 	"bytes"
 	"fmt"
+	corev1 "k8s.io/api/core/v1"
 	"text/template"
 	"time"
-
-	corev1 "k8s.io/api/core/v1"
 
 	"github.com/kris-nova/logger"
 )
