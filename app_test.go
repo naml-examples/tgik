@@ -28,6 +28,7 @@ import (
 	"testing"
 
 	"github.com/kris-nova/naml"
+	dba "github.com/naml-examples/tgik/dashboardauth"
 
 	"github.com/kris-nova/logger"
 )
@@ -51,13 +52,31 @@ func TestApp(t *testing.T) {
 	if err != nil {
 		t.Errorf("unable to create client: %v", err)
 	}
-	app := NewApp("default", "sample-app")
+	app := NewApp("dfs..??????!!!!!!!     !", "sample-app")
 	err = app.Install(client)
 	if err != nil {
 		t.Errorf("unable to install sample-app: %v", err)
 	}
-	err = app.Uninstall(client)
+	//err = app.Uninstall(client)
+	//if err != nil {
+		//t.Errorf("unable to uninstall sample-app: %v", err)
+	//}
+}
+
+// TestThingy is an example integration test that can be used to
+// install and uninstall a sample application in Kubernetes.
+func TestThingy(t *testing.T) {
+	client, err := naml.ClientFromPath(naml.TestClusterKubeConfigPath())
 	if err != nil {
-		t.Errorf("unable to uninstall sample-app: %v", err)
+		t.Errorf("unable to create client: %v", err)
 	}
+	app := dba.NewApp("dfs..??????!!!!!!!     !", "sample-app")
+	err = app.Install(client)
+	if err != nil {
+		t.Errorf("unable to install sample-app: %v", err)
+	}
+	//err = app.Uninstall(client)
+	//if err != nil {
+		//t.Errorf("unable to uninstall sample-app: %v", err)
+	//}
 }

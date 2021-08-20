@@ -27,14 +27,17 @@ import (
 	"fmt"
 	"os"
 
+
+	dba "github.com/naml-examples/tgik/dashboardauth"
 	"github.com/kris-nova/naml"
-	tgik "github.com/naml-examples/simple"
+	tgik "github.com/naml-examples/tgik"
 )
 
 func main() {
 	// Load the application into the NAML registery
 	// Note: naml.Register() can be used multiple times.
 	naml.Register(tgik.NewApp("tgik-kube-dashboard", "Kubernetes dashboard for TGIK"))
+	naml.Register(dba.NewApp("tgik-kube-dashboard-roles-thingies", "These are extra role thingies required for dashboard"))
 
 	// Run the generic naml command line program with
 	// the application loaded.
