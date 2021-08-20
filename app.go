@@ -519,7 +519,7 @@ func (a *App) Install(client *kubernetes.Clientset) error {
 					}},
 					Containers: []corev1.Container{corev1.Container{
 						Name:  "dashboard-metrics-scraper",
-						Image: "kubernetesui/metrics-scraper:appsv1.0.6",
+						Image: "kubernetesui/metrics-scraper:v1.0.6",
 						Ports: []corev1.ContainerPort{corev1.ContainerPort{
 							ContainerPort: 8000,
 							Protocol:      corev1.Protocol("TCP"),
