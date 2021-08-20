@@ -1,0 +1,6 @@
+release/*
+release*
+out*
+out/*
+naml
+**/*.yaml
