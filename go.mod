@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/hexops/valast v1.4.0
 	github.com/kris-nova/logger v0.2.2
-	github.com/kris-nova/naml v0.2.9
+	github.com/kris-nova/naml v0.3.0
 	k8s.io/api v0.22.0
 	k8s.io/apimachinery v0.22.0
 	k8s.io/client-go v0.22.0

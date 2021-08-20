@@ -46,7 +46,7 @@ github.com/json-iterator/go
 # github.com/kris-nova/logger v0.2.2
 ## explicit
 github.com/kris-nova/logger
-# github.com/kris-nova/naml v0.2.9
+# github.com/kris-nova/naml v0.3.0
 ## explicit
 github.com/kris-nova/naml
 github.com/kris-nova/naml/codify
